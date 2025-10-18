@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from happ.views import HomePageView, CategoryList, CategoryCreateView
+from happ.views import HomePageView, CategoryList, CategoryCreateView, CategoryUpdateView
 from happ import views
 
 urlpatterns = [
@@ -24,5 +24,6 @@ urlpatterns = [
     path('', views.HomePageView.as_view(), name='home'),
     path('category_list', CategoryList.as_view(), name='category-list'),
     path('category_list/add', CategoryCreateView.as_view(), name='category-add'),
+    path('category_list/<pk>',CategoryUpdateView.as_view(), name='category-update'),
 ]
 
