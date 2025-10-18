@@ -7,6 +7,7 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+# CATEGORY
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -27,6 +28,7 @@ class Priority(models.Model):
     def __str__(self):
         return self.name
 
+# TASK
 class Task(BaseModel):
     STATUS_CHOICES = [
         ("Pending", "Pending"),
@@ -55,6 +57,7 @@ class SubTask(BaseModel):
 
     def __str__(self):
         return self.title
+
 
 class Note(models.Model):
     task = models.ForeignKey(Task, related_name='notes', on_delete=models.CASCADE)
