@@ -45,6 +45,7 @@ class Task(BaseModel):
     def __str__(self):
         return self.title
 
+# SUBTASK
 class SubTask(BaseModel):
     STATUS_CHOICES = [
         ("Pending", "Pending"),
@@ -58,7 +59,7 @@ class SubTask(BaseModel):
     def __str__(self):
         return self.title
 
-
+# NOTES
 class Note(models.Model):
     task = models.ForeignKey(Task, related_name='notes', on_delete=models.CASCADE)
     content = models.TextField()

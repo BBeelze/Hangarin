@@ -6,3 +6,13 @@ class CategoryForm(ModelForm):
     class Meta:
         model = Category
         fields = "__all__"
+
+class NoteForm(ModelForm):
+    class Meta:
+        model = Note
+        fields = "__all__"
+
+class PriorityForm(ModelForm):
+    class Meta:
+        model = Priority
+        fields = "__all__"

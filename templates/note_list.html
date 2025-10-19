@@ -9,7 +9,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <div class="card-title">List of Category</div>
+            <div class="card-title">List of Note</div>
             <div class="card-category">Page Subtitle</div>
           </div>
           <br />
@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-6">
               <div class="pull-right">
-                <a href="{% url 'category-add' %}" class="btn btn-success btn-rounded">Add Category</a>
+                <a href="{% url 'note-add' %}" class="btn btn-success btn-rounded">Add Note</a>
               </div>
             </div>
           </div>
@@ -36,17 +36,23 @@
             <table class="table table-striped mt-3">
               <thead>
                 <tr>
-                  <th scope="col">Name</th>
+                  <th scope="col">Note</th>
+                  <th scope="col">Content</th>
+                  <th scope="col">Created_at</th>
+                  <th scope="col">Updated_at</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {% for object in object_list %}
                 <tr>
-                  <td>{{ object.name }}</td>
+                  <td>{{ object.task }}</td>
+                  <td>{{ object.content }}</td>
+                  <td>{{ object.created_at }}</td>
+                  <td>{{ object.updated_at }}</td>
                   <td>
-                    <a href="category_list/{{ object.id }}">Edit</a>
-                    <a href="category_list/{{ object.id }}/delete" class="text-danger">Delete</a>
+                    <a href="note_list/{{ object.id }}">Edit</a>
+                    <a href="note_list/{{ object.id }}/delete" class="text-danger">Delete</a>
                   </td>
                 </tr>
                 {% empty %}
