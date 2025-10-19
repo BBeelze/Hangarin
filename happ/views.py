@@ -5,11 +5,29 @@ from happ.models import Category, Note, Priority, SubTask, Task
 from happ.forms import CategoryForm, NoteForm, PriorityForm, SubTaskForm, TaskForm
 from django.urls import reverse_lazy
 from django.db.models import Q
+from django.utils import timezone
 
 class HomePageView(ListView):
     model = Category
     context_object_name = 'home'
     template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["total_task"] = Task.objects.count()
+        context["total_note"] = Note.objects.count()
+        context["total_subtask"] = SubTask.objects.count()
+        context["total_category"] = Category.objects.count()
+        context["total_priority"] = Priority.objects.count()
+
+        today = timezone.now().date()
+
+        context["near_deadline_tasks"] = Task.objects.filter(deadline__gte=today, deadline__lte=today + timezone.timedelta(days=7)).order_by("deadline")
+
+        context["recent_tasks"] = Task.objects.order_by("-created_at")[:5]
+
+        return context
 
 # CATEGORY
 class CategoryList(ListView):
