@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from happ.models import Category, Note, Priority, SubTask
-from happ.forms import CategoryForm, NoteForm, PriorityForm, SubTaskForm
+from happ.models import Category, Note, Priority, SubTask, Task
+from happ.forms import CategoryForm, NoteForm, PriorityForm, SubTaskForm, TaskForm
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 class HomePageView(ListView):
     model = Category
@@ -16,6 +17,17 @@ class CategoryList(ListView):
     context_object_name = 'category'
     template_name = 'category_list.html'
     paginate_by = 5
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(name__icontains=query) |
+                Q(description__icontains=query)
+            )
+        return qs
 
 class CategoryCreateView(CreateView):
     model = Category
@@ -105,3 +117,28 @@ class SubTaskDeleteView(DeleteView):
     model = SubTask
     template_name = 'subtask_del.html'
     success_url = reverse_lazy('subtask-list')
+
+# TASKS
+
+class TaskList(ListView):
+    model = Task
+    context_object_name = 'task'
+    template_name = 'task_list.html'
+    paginate_by = 5
+
+class TaskCreateView(CreateView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'task_form.html'
+    success_url = reverse_lazy('task-list')
+
+class TaskUpdateView(UpdateView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'task_form.html'
+    success_url = reverse_lazy('task-list')
+
+class TaskDeleteView(DeleteView):
+    model = Task
+    template_name = 'task_del.html'
+    success_url = reverse_lazy('task-list')

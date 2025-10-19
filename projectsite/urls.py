@@ -1,22 +1,6 @@
-"""
-URL configuration for projectsite project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
-from happ.views import HomePageView, CategoryList, CategoryCreateView, CategoryUpdateView, CategoryDeleteView, NoteList, NoteCreateView, NoteUpdateView, NoteDeleteView, PriorityList, PriorityCreateView, PriorityUpdateView, PriorityDeleteView, SubTaskList, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView
+from happ.views import HomePageView, CategoryList, CategoryCreateView, CategoryUpdateView, CategoryDeleteView, NoteList, NoteCreateView, NoteUpdateView, NoteDeleteView, PriorityList, PriorityCreateView, PriorityUpdateView, PriorityDeleteView, SubTaskList, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView, TaskList,  TaskCreateView, TaskUpdateView,TaskCreateView, TaskUpdateView,TaskDeleteView
 from happ import views
 
 urlpatterns = [
@@ -46,5 +30,11 @@ urlpatterns = [
     path('subtask_list/add', SubTaskCreateView.as_view(), name='subtask-add'),
     path('subtask_list/<pk>',SubTaskUpdateView.as_view(), name='subtask-update'),    
     path('subtask_list/<pk>/delete', SubTaskDeleteView.as_view(), name='subtask-delete'),
+
+    #TASK
+    path('task_list', TaskList.as_view(), name='task-list'),
+    path('task_list/add', TaskCreateView.as_view(), name='task-add'),
+    path('task_list/<pk>',TaskUpdateView.as_view(), name='task-update'),
+    path('task_list/<pk>/delete', TaskDeleteView.as_view(), name='task-delete'),
 ]
 
