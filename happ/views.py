@@ -23,11 +23,10 @@ class CategoryList(ListView):
         query = self.request.GET.get('q')
 
         if query:
-            qs = qs.filter(
-                Q(name__icontains=query) |
-                Q(description__icontains=query)
-            )
-        return qs
+            qs = qs.filter( 
+                Q(name__icontains=query)
+                ) 
+        return qs 
 
 class CategoryCreateView(CreateView):
     model = Category
@@ -53,6 +52,17 @@ class NoteList(ListView):
     template_name = 'note_list.html'
     paginate_by = 5
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+        
+        if query:
+            qs = qs.filter( 
+                Q(task__title__icontains=query) |
+                Q(content__icontains=query)
+                ) 
+        return qs 
+
 class NoteCreateView(CreateView):
     model = Note
     form_class = NoteForm
@@ -76,6 +86,16 @@ class PriorityList(ListView):
     context_object_name = 'priority'
     template_name = 'priority_list.html'
     paginate_by = 5
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter( 
+                Q(name__icontains=query)
+                ) 
+        return qs 
 
 class PriorityCreateView(CreateView):
     model = Priority
@@ -101,6 +121,18 @@ class SubTaskList(ListView):
     template_name = 'subtask_list.html'
     paginate_by = 5
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter( 
+                Q(task__title__icontains=query) |
+                Q(title__icontains=query) |
+                Q(status__icontains=query)
+                ) 
+        return qs 
+
 class SubTaskCreateView(CreateView):
     model = SubTask
     form_class = SubTaskForm
@@ -125,6 +157,18 @@ class TaskList(ListView):
     context_object_name = 'task'
     template_name = 'task_list.html'
     paginate_by = 5
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            qs = qs.filter( 
+                Q(title__icontains=query) |
+                Q(description__icontains=query) |
+                Q(deadline__icontains=query) |
+                Q(status__icontains=query)
+                ) 
+        return qs 
 
 class TaskCreateView(CreateView):
     model = Task
