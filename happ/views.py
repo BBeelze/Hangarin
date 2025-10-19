@@ -45,6 +45,14 @@ class CategoryList(ListView):
                 Q(name__icontains=query)
                 ) 
         return qs 
+    
+    def get_ordering(self):
+        allowed = ["name"]
+        sort_by = self.request.GET.get("sort_by")
+
+        if sort_by in allowed:
+            return sort_by
+        return "name"
 
 class CategoryCreateView(CreateView):
     model = Category
@@ -80,6 +88,14 @@ class NoteList(ListView):
                 Q(content__icontains=query)
                 ) 
         return qs 
+    
+    def get_ordering(self):
+        allowed = ["task", "content",]
+        sort_by = self.request.GET.get("sort_by")
+
+        if sort_by in allowed:
+            return sort_by
+        return "task"
 
 class NoteCreateView(CreateView):
     model = Note
@@ -114,6 +130,14 @@ class PriorityList(ListView):
                 Q(name__icontains=query)
                 ) 
         return qs 
+    
+    def get_ordering(self):
+        allowed = ["name"]
+        sort_by = self.request.GET.get("sort_by")
+
+        if sort_by in allowed:
+            return sort_by
+        return "name"
 
 class PriorityCreateView(CreateView):
     model = Priority
@@ -150,6 +174,14 @@ class SubTaskList(ListView):
                 Q(status__icontains=query)
                 ) 
         return qs 
+    
+    def get_ordering(self):
+        allowed = ["task","title", "status",]
+        sort_by = self.request.GET.get("sort_by")
+
+        if sort_by in allowed:
+            return sort_by
+        return "title"
 
 class SubTaskCreateView(CreateView):
     model = SubTask
@@ -187,6 +219,14 @@ class TaskList(ListView):
                 Q(status__icontains=query)
                 ) 
         return qs 
+    
+    def get_ordering(self):
+        allowed = ["title", "deadline", "status"]
+        sort_by = self.request.GET.get("sort_by")
+
+        if sort_by in allowed:
+            return sort_by
+        return "title"
 
 class TaskCreateView(CreateView):
     model = Task
