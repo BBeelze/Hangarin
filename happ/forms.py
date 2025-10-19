@@ -16,3 +16,8 @@ class PriorityForm(ModelForm):
     class Meta:
         model = Priority
         fields = "__all__"
+
+class SubTaskForm(ModelForm):
+    class Meta:
+        model = SubTask
+        fields = "__all__"
