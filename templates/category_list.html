@@ -44,10 +44,8 @@
               </div>
               <div class="col-auto">
                 <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
-                  <option value="name"{% if request.GET.sort_by == "name" %} selected{% endif %}>Name (A-Z)</option>
-                  <option value="-name"{% if request.GET.sort_by == "-name" %} selected{% endif %}>Name (Z-A)</option>
-                  <option value="created_at"{% if request.GET.sort_by == "created_at" %} selected{% endif %}>Newest First</option>
-                  <option value="-created_at"{% if request.GET.sort_by == "-created_at" %} selected{% endif %}>Oldest First</option>
+                  <option value="name"{% if request.GET.sort_by == "name" %} selected{% endif %}>Name ( A - Z )</option>
+                  <option value="-name"{% if request.GET.sort_by == "-name" %} selected{% endif %}>Name ( Z - A )</option>
                 </select>
               </div>
               <div class="col-auto">

@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 from django.utils import timezone
 
+
 class HomePageView(ListView):
     model = Category
     context_object_name = 'home'
@@ -47,12 +48,12 @@ class CategoryList(ListView):
         return qs 
     
     def get_ordering(self):
-        allowed = ["name"]
+        allowed = ["name", "-name"]
         sort_by = self.request.GET.get("sort_by")
 
         if sort_by in allowed:
             return sort_by
-        return "name"
+        return "name"  
 
 class CategoryCreateView(CreateView):
     model = Category
@@ -90,12 +91,12 @@ class NoteList(ListView):
         return qs 
     
     def get_ordering(self):
-        allowed = ["task", "content",]
+        allowed = ["created_at", "-created_at"]
         sort_by = self.request.GET.get("sort_by")
 
         if sort_by in allowed:
             return sort_by
-        return "task"
+        return "created_at"  
 
 class NoteCreateView(CreateView):
     model = Note
@@ -132,7 +133,7 @@ class PriorityList(ListView):
         return qs 
     
     def get_ordering(self):
-        allowed = ["name"]
+        allowed = ["name", "-name"]
         sort_by = self.request.GET.get("sort_by")
 
         if sort_by in allowed:
@@ -176,7 +177,7 @@ class SubTaskList(ListView):
         return qs 
     
     def get_ordering(self):
-        allowed = ["task","title", "status",]
+        allowed = ["tittle","-title"]
         sort_by = self.request.GET.get("sort_by")
 
         if sort_by in allowed:
@@ -221,12 +222,12 @@ class TaskList(ListView):
         return qs 
     
     def get_ordering(self):
-        allowed = ["title", "deadline", "status"]
+        allowed = ["deadline", "-deadline"]
         sort_by = self.request.GET.get("sort_by")
 
         if sort_by in allowed:
             return sort_by
-        return "title"
+        return "deadline"
 
 class TaskCreateView(CreateView):
     model = Task
