@@ -123,13 +123,8 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#"><i class="ti-settings"></i> Account Setting</a>
 								<div class="dropdown-divider"></div>
-								{% if user.is_authenticated %}
 									<span>Logged in as: {{ user.username }}</span>
 									<a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-								{% else %}
-									<span>Not logged in</span>
-									<a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-								{% endif %}
 								<!-- /.dropdown-user -->
 							</li>
 						</ul>
@@ -239,7 +234,7 @@
 							</ul>
 						</nav>
 						<div class="copyright ml-auto">
-							2018, made with <i class="la la-heart heart text-danger"></i> by <a href="http://www.themekita.com">ThemeKita</a>
+							2025, made with <i class="la la-heart heart text-danger"></i> by Timothy Alli</a>
 						</div>				
 					</div>
 				</footer>
