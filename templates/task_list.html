@@ -45,7 +45,7 @@
               <div class="col-auto">
                 <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
                   <option value="deadline"{% if request.GET.sort_by == "deadline" %} selected{% endif %}>Oldest Task</option>
-                  <option value="-deadline"{% if request.GET.sort_by == "-deadline" %} selected{% endif %}>Lastest Task</option>
+                  <option value="-deadline"{% if request.GET.sort_by == "-deadline" %} selected{% endif %}>Latest Task</option>
                 </select>
               </div>
               <div class="col-auto">
