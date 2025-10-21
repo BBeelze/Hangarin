@@ -50,10 +50,15 @@ INSTALLED_APPS = [
     'pwa',
 ]
 
-if os.environ.get('PYTHONANYWHERE_SITE'):
-    SITE_ID = 2  # production site
+if os.environ.get('PYTHONANYWHERE_SITE') == 'bbeelze02.pythonanywhere.com':
+    SITE_ID = 2 # production site
 else:
-    SITE_ID = 3  # local site
+    hostname = socket.gethostname()
+
+    if 'bbeelze02' in hostname and 'pythonanywhere' in hostname:
+        SITE_ID = 2 # production site
+    else:
+        SITE_ID = 3 # local site (or other non-production)
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
