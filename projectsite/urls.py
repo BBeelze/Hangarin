@@ -3,11 +3,13 @@ from django.urls import path
 from happ.views import HomePageView, CategoryList, CategoryCreateView, CategoryUpdateView, CategoryDeleteView, NoteList, NoteCreateView, NoteUpdateView, NoteDeleteView, PriorityList, PriorityCreateView, PriorityUpdateView, PriorityDeleteView, SubTaskList, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView, TaskList,  TaskCreateView, TaskUpdateView,TaskCreateView, TaskUpdateView,TaskDeleteView
 from happ import views
 from django.urls import path, include
+from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.HomePageView.as_view(), name='home'),
     path("accounts/", include("allauth.urls")), # allauth routes
+    path('', include('pwa.urls')),  # PWA app routes
 
     # CATEGORY
     path('category_list', CategoryList.as_view(), name='category-list'),
